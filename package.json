@@ -22,7 +22,9 @@
 	"type": "module",
 	"dependencies": {
 		"@k4ung/svelte-otp": "^0.0.9",
+		"@sveltejs/adapter-static": "^3.0.1",
 		"firebase": "^10.8.0",
-		"otpauth": "^9.2.2"
+		"otpauth": "^9.2.2",
+		"sass": "^1.70.0"
 	}
 }
