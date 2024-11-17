@@ -1,30 +1,24 @@
 <script lang="ts">
-  import * as OTPAuth from 'otpauth'
-  import { initializeApp } from "firebase/app";
+	import Card from "$lib/Card/Card.svelte";
+	import { db } from "$lib/firebase";
+	import { getDocs, collection } from 'firebase/firestore';
 
-  // TODO: move api key out of file being put on repository
-  // like seriously this is very dangerous
-  const firebaseConfig = {
-    apiKey: "AIzaSyBiUP1mz_aaOomVD9-tCaVHuO0IZ9_wIpg",
-    authDomain: "authenticator-95365.firebaseapp.com",
-    projectId: "authenticator-95365",
-    storageBucket: "authenticator-95365.appspot.com",
-    messagingSenderId: "87407968965",
-    appId: "1:87407968965:web:5125d61b2cb8d1c4db66ac"
-  };
+	let data: any;
+	let loaded = false;
 
-  initializeApp(firebaseConfig);
-
-  let secret: string;
-  let token: string;
-
-  function genToken() {
-    token = new OTPAuth.TOTP({secret: secret}).generate()
-  }
+	async function getWebsites() {
+		let docs = await getDocs(collection(db, "Websites"))
+		data = docs.docs.map(doc => doc.data())
+		loaded = true;
+	}
 </script>
 
-<!--
-{token}
-<input type="password" bind:value={secret} />
-<button on:click={genToken}>Submit</button>
--->
+{#if !loaded}
+	{#await getWebsites()}
+		Loading...
+	{/await}
+{:else}
+	{#each data as doc}
+		<Card secret={doc.secret} website={doc.name} password={doc.password} />
+	{/each}
+{/if}

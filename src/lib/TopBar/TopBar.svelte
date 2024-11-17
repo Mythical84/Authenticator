@@ -1,31 +1,43 @@
 <script lang="ts">
     import { page } from '$app/stores'
 
-    let title: string;
+	let title: string;
 
-    $: if ($page.url.pathname == "/") {
-        title = "Two Factor Authetication"
-    } else if ($page.url.pathname == '/passwords') {
-        title = "Passwords"
-    } else if ($page.url.pathname == '/add') {
-        title = "Add Account"
-    }
+	$: if ($page.url.pathname == "/") {
+		title = "Account Manager"
+	} else if ($page.url.pathname == '/add') {
+		title = "Add Account"
+	}
 </script>
 
 <main>
-    <h1>{title}</h1>
-    <a href="add">+</a>
-    <div id="circle"></div>
+	<h1>{title}</h1>
+	<a href="/add">+</a>
 </main>
 
 <style>
-    main {
-        height: 70px;
-        width: 100vw;
-        border-bottom: solid black;
-        padding-left: 10px;
-    }
+	main {
+		height: 70px;
+		border-bottom: 3px solid black;
+		padding-left: 10px;
+	}
 
+	a {
+		position: absolute;
+		top: 5px;
+		right: 20px;
+		width: 75px;
+		height: 75px;
+		border: 2px solid black;
+		border-radius: 50%;
+		color: black;
+		text-decoration: none;
+		text-align: center;
+		line-height: 75px;
+		font-size: 75px;
+	}
+
+	/*
     a {
         position: absolute;
         top: 10px;
@@ -43,5 +55,6 @@
         height: 30px;
         top: 10px;
         right: 10px;
-    }
+		}
+	*/
 </style>

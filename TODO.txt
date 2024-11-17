@@ -1,0 +1,19 @@
+Important Stuff
+* Move api token to a .env file
+* QR Code scanner using camera
+* Better code for the timer
+* Convert to firefox plugin
+	* QR Code detecter
+	* QR Code manual input
+	* Parse QR Code
+	* Autofill data
+	* Automatically grab the website name when the code is input
+	Ideas
+		* Instead of converting into a plugin, display the website with the plugin,
+			writing only functionality for QR Code and some other stuff that wouldn't
+			be in the website such as autofill
+		* The svelte compiler converts the website to pure js, so I might be able
+			to just ship it as a plugin with minimal changes
+
+Optimizations
+* Find a proper way to cache the data that will persist between page reloads
